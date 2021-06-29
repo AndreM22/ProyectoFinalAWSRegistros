@@ -2,7 +2,7 @@
 DEPLOYMENT_BUCKET="proyecto-mt-bank-registros"
 
 
-STACK_NAME="movies-app"
+STACK_NAME="registros-app"
 
 while getopts ":bdp" OPTION; do
     case $OPTION in

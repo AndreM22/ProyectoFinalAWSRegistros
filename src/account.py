@@ -3,12 +3,12 @@ import json
 import boto3
 import os
 
-accounts_table = os.environ['ACCOUNTS-TABLE']
+accounts_table = os.environ['ACCOUNTS_TABLE']
 dynamodb = boto3.resource('dynamodb')
 table = dynamodb.Table(accounts_table)
 
 
-def putAccount(event, context):
+def putNewAccount(event, context):
     print(json.dumps({"running": True}))
     print(json.dumps(event))
     path = event["path"]
@@ -19,10 +19,12 @@ def putAccount(event, context):
     print(account_id)
     item = {
         'pk': account_id,
+        'sk': "info",
         'name': body["name"],
         'money_amount': body["money_amount"],
         'business_info': body["business_info"],
-        'monthly_salary': body["monthly_salary"]
+        'monthly_salary': body["monthly_salary"],
+        "daily_transactions":body["daily_transactions"]
     }
     print(json.dumps(item))
     table.put_item(

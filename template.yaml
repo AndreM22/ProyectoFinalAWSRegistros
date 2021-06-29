@@ -2,16 +2,16 @@ AWSTemplateFormatVersion : '2010-09-09'
 Transform:
   - AWS::Serverless-2016-10-31
 
-Description: My Lambda Resources
+Description: My Resources
 Resources:
-  PutUserFunction:
+  PutNewAccount:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: putAccount
+      FunctionName: putNewAccount
       Environment:
         Variables:
-          USERS_TABLE: !Ref AccountsTable
-      Handler: account.putAccount
+          ACCOUNTS_TABLE: !Ref AccountsTable
+      Handler: account.putNewAccount
       Runtime: python3.6
       CodeUri: package/
       Policies:
@@ -39,7 +39,7 @@ Resources:
   AccountsTable:
     Type: AWS::DynamoDB::Table
     Properties:
-      TableName: accounts-app
+      TableName: accounts-table
       ProvisionedThroughput:
         ReadCapacityUnits: 5
         WriteCapacityUnits: 5
